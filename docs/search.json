@@ -1,21 +1,21 @@
 [
   {
-    "objectID": "index.html#introdução-1",
-    "href": "index.html#introdução-1",
+    "objectID": "trabalho/index.html#introdução-1",
+    "href": "trabalho/index.html#introdução-1",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "1.1 Introdução",
     "text": "1.1 Introdução\n\n\n\nO que é o IMDb?\n\nMaior base pública de dados sobre filmes e séries do mundo\nFundado em 1990, atualmente pertencente à Amazon\nUsuários registrados atribuem notas de 1 a 10 por título\nA nota exibida é a média ponderada dos votos recebidos\n\n\n\n\nRelevância:\n\nA nota IMDb influencia decisões de distribuição e streaming\nServe como proxy de qualidade percebida pelo público geral\nAmplamente usada em pesquisas de preferência do consumidor\n\n\n\n\n\n\nNa Literatura:\n\nSharda & Delen (2006): redes neurais para prever bilheteria usando atributos do IMDb\nGhiassi et al. (2015): combinação de dados do Twitter e IMDb para predição de receita em pré-estreia\nFatores como gênero, duração e ano de lançamento aparecem recorrentemente como preditores relevantes\nModelos de regressão são a abordagem mais comum para explicar variação nas notas"
   },
   {
-    "objectID": "index.html#os-dados",
-    "href": "index.html#os-dados",
+    "objectID": "trabalho/index.html#os-dados",
+    "href": "trabalho/index.html#os-dados",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "2.1 Os dados",
     "text": "2.1 Os dados\n\n\n\nOrigem dos Dados\n\nFonte original: Kaggle - Raed Addala\n\n\n“most popular 500–600 movies per year from 1920 to 2025”\n\n\nTratamento Preliminar: Base Dos Dados - Patrick Teixeira\n\n\n\n\nComposição dos Dados (Completo)\n\nObservações: 33.600 linhas;\nVariáveis: 23 colunas;\nCobertura: 1960 – 2024.\n\n\n\n\n\n\nEstrutura dos Dados (Completo)\n\n\n\nVariável\nDescrição\nTipo\n\n\n\n\nid\nIdentificador do filme\nSTRING\n\n\ntitle\nTítulo\nSTRING\n\n\nlink\nLink IMDb\nSTRING\n\n\nyear\nAno de lançamento\nINT64\n\n\nduration\nDuração\nSTRING\n\n\nrating_mpa\nClassificação etária (MPA)\nFLOAT64\n\n\nrating_imdb\nNota IMDb\nFLOAT64\n\n\nvote\nNúmero de votos\nINT64\n\n\nbudget\nOrçamento (USD)\nFLOAT64\n\n\ngross_world_wide\nBilheteria mundial (USD)\nFLOAT64\n\n\ngross_us_canada\nBilheteria EUA/Canadá (USD)\nFLOAT64\n\n\ngross_opening_weekend\nBilheteria de estreia (USD)\nFLOAT64\n\n\ndirector\nDiretores\nSTRING\n\n\nwriter\nRoteiristas\nSTRING\n\n\nstar\nEstrelas\nSTRING\n\n\ngenre\nGêneros\nSTRING\n\n\ncountry_origin\nPaíses de origem\nSTRING\n\n\nfilming_location\nLocais de filmagem\nSTRING\n\n\nproduction_company\nProdutoras\nSTRING\n\n\nlanguage\nIdiomas\nSTRING\n\n\nwin\nPrêmios ganhos\nINT64\n\n\nnomination\nIndicações\nINT64\n\n\noscar\nIndicações ao Oscar\nINT64"
   },
   {
-    "objectID": "index.html#metodologia-1",
-    "href": "index.html#metodologia-1",
+    "objectID": "trabalho/index.html#metodologia-1",
+    "href": "trabalho/index.html#metodologia-1",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "3.1 Metodologia",
     "text": "3.1 Metodologia\n\n\n\n\n1\n\n\nAnálise Exploratória\n\n\nEstatísticas descritivas, histogramas e dispersão\n\n\n\n\n→\n\n\n\n\n2\n\n\nPré-processamento\n\n\nOutliers, NAs, log de vote e dummies\n\n\n\n\n→\n\n\n\n\n3\n\n\nAjuste dos Modelos\n\n\nSimples → múltipla → stepwise AIC/BIC\n\n\n\n\n→\n\n\n\n\n4\n\n\nDiagnóstico & Seleção\n\n\nResíduos, ANOVA e R² ajustado\n\n\n\n\n\n\n\nVariáveis Explicativas\n\nduration budget gross_world_wide nomination\n\n\n\n\n   \n\n\n\nVariável Respota\nrating_imdb"
