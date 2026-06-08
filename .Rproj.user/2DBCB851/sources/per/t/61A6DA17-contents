@@ -1,0 +1,26 @@
+# Setup ------------------------------------------------------------------------
+## Pacotes ----
+library(tidyverse)
+
+## df ----
+df_0 <- read.csv("trabalho/data/world_imdb_movies_top_movies_per_year.csv")
+df_0 <- df_0 %>%
+  select(duration, rating_imdb, budget, gross_world_wide, genre, nomination)
+# Adequação --------------------------------------------------------------------
+glimpse(df_0)
+
+df <- df_0 %>%
+  mutate(
+    horas = as.integer(str_extract(duration, "\\d+(?=h)")),
+    minutos = as.integer(str_extract(duration, "\\d+(?=m)")),
+    horas = ifelse(is.na(horas), 0, horas),
+    minutos = ifelse(is.na(minutos), 0, minutos),
+    duration_min = horas * 60 + minutos
+  ) %>%
+  select(-horas, -minutos, -duration)
+
+df <- na.omit(df)
+glimpse(df)
+# Modelos ----------------------------------------------------------------------
+modelo <- lm(df$rating_imdb ~ df$budget + df$gross_world_wide + df$nomination + df$duration_min)
+summary(modelo)

@@ -1,0 +1,270 @@
+/* ===== Base ===== */
+.reveal {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: 30px;
+  background-color: #141414;
+  color: #E8E8F0;
+}
+.reveal .slides section li {
+  text-align: left;
+}
+.reveal .slides {
+  text-align: left;
+}
+
+/* ==== Slide de título ==== */
+#title-slide .title {
+  color: #E8E8F0;
+  font-size: 2.2em;
+  font-weight: 800;
+  transform: translateY(10px);
+  line-height: 1.2;
+}
+#title-slide .subtitle {
+  color: #64748B;
+  font-size: 1.2em;
+  font-weight: 350;
+  margin-top: 0.4em;
+}
+#title-slide .author {
+  color: #9A9080;
+  font-size: 0.7em;
+  margin-top: 1em;
+}
+#title-slide .institute {
+  color: #9A9080;
+  font-size: 0.58em;
+  font-style: italic;
+}
+#title-slide .date {
+  color: #64748B;
+  font-size: 0.55em;
+  transform: translateY(-10px);
+}
+
+/* ===== Títulos ===== */
+.reveal h1 {
+  font-size: 2.4em;
+  font-weight: 800;
+  color: #F5C518;
+}
+.reveal h2 {
+  font-size: 1.7em;
+  font-weight: 700;
+  color: #C9A020;
+}
+.reveal h3 {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #F5C518;
+}
+
+/* ===== Slide de transição ===== */
+.reveal .title-slide {
+  background: linear-gradient(
+      135deg,
+      rgba(10, 10, 8, 0.88),
+      rgba(42, 38, 24, 0.78),
+      rgba(42, 38, 24, 0.55)
+    ),
+    url("media/transicao.png");
+  background-size: cover;
+  background-position: center;
+  color: #F0EAD8;
+}
+.reveal .slides section.glass {
+  background: rgba(42, 38, 24, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.reveal .title-slide h1,
+.reveal .title-slide h2,
+.reveal .title-slide p {
+  color: #F0EAD8;
+}
+
+/* ===== Texto ===== */
+.reveal p,
+.reveal li {
+  line-height: 1.45;
+}
+
+/* ===== Listas ===== */
+.reveal ul li::marker {
+  color: #F5C518;
+}
+
+/* ===== Caixas ===== */
+.box-gold {
+  border-left: 8px solid #F5C518;
+  background: rgba(245, 197, 24, 0.09);
+  padding: 0.7em;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+.box-copper {
+  border-left: 8px solid #D97706;
+  background: rgba(217, 119, 6, 0.14);
+  padding: 0.9em 1.1em;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+}
+
+/* ===== Destaques ===== */
+.highlight-gold { color: #F5C518; font-weight: 700; }
+.highlight-copper   { color: #D97706; font-weight: 700; }
+
+/* ===== Código ===== */
+.reveal pre code {
+  font-size: 0.78em;
+  background: #1A1810;
+  color: #F5C518;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+/* ===== Slide Final ===== */
+.reveal .final-slide {
+  background: linear-gradient(
+      135deg,
+      rgba(10, 10, 8, 0.65),
+      rgba(42, 38, 24, 0.45),
+      rgba(42, 38, 24, 0.25)
+    ),
+    url("media/final.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #F0EAD8;
+}
+.reveal section.title-slide.final-slide,
+.reveal section.title-slide.final-slide h1 {
+  background: none !important;
+  background-color: transparent !important;
+  font-size: 2.5em !important;
+  background-image: none !important;
+  color: #F5C518;
+  transform: translateY(-70px) translateX(50px);
+}
+
+/* ===== Rodapé ===== */
+.reveal .footer {
+  font-size: 0.5em;
+  color: rgba(154, 144, 128, 0.70);
+}
+
+/* ===== Tabela geral ===== */
+.reveal table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.75em;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ===== Tema: cabeçalho ===== */
+.reveal table.tabela-tema thead th {
+  background-color: #F5C518 !important;
+  color: #0A0A08 !important;
+  font-weight: 700;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 3px solid #D97706;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* ===== Tema: corpo ===== */
+.reveal table.tabela-tema tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #2A2A2A;
+  color: #E8E8F0;
+}
+
+.reveal table.tabela-tema tbody tr:nth-child(even) {
+  background-color: #222220;
+}
+
+.reveal table.tabela-tema tbody tr:nth-child(odd) {
+  background-color: #1A1810;
+}
+
+.reveal table.tabela-tema tbody tr:hover {
+  background-color: rgba(245, 197, 24, 0.10);
+  transition: background-color 0.2s;
+}
+
+/* primeira coluna em dourado monoespaçado */
+.reveal table.tabela-tema tbody td:first-child {
+  font-weight: 600;
+  color: #F5C518;
+  font-family: monospace;
+}
+
+/* ===== Tabela com scroll ===== */
+.tabela-scroll {
+  display: block;
+  width: 100%;
+}
+
+.tabela-scroll thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tabela-scroll tbody {
+  display: block;
+  max-height: 450px;
+  overflow-y: auto;
+  width: 100%;
+  /* Scrollbar fina no tema */
+  scrollbar-width: thin;
+  scrollbar-color: #F5C518 #1A1810;
+}
+
+.tabela-scroll tbody::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tabela-scroll tbody::-webkit-scrollbar-track {
+  background: #1A1810;
+  border-radius: 4px;
+}
+
+.tabela-scroll tbody::-webkit-scrollbar-thumb {
+  background: #F5C518;
+  border-radius: 4px;
+}
+
+.tabela-scroll tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* ===== Linhas destacadas tabela 1 ===== */
+
+.reveal table.tabela-tema-destaque1 tbody tr:nth-child(5) td,
+.reveal table.tabela-tema-destaque1 tbody tr:nth-child(7) td,
+.reveal table.tabela-tema-destaque1 tbody tr:nth-child(9) td,
+.reveal table.tabela-tema-destaque1 tbody tr:nth-child(10) td,
+.reveal table.tabela-tema-destaque1 tbody tr:nth-child(22) td{
+  background-color: rgba(245, 197, 24, 0.18) !important;
+  color: #D97706 !important;
+  font-weight: 700;
+}
+
+/* ===== code ===== */
+code.copper {
+  background: rgba(217, 119, 6, 0.15);
+  color: #D97706;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+code.gold {
+  background: rgba(245, 197, 24, 0.15);
+  color: #F5C518;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
