@@ -7,7 +7,7 @@
     explicam sua nota média no IMDb.
   </p>
 
-  <a href="ttps://caiovaos.github.io/Modelos-Lineares/">
+  <a href="https://caiovaos.github.io/Modelos-Lineares/trabalho/index.html#/title-slide">
     <img src="https://img.shields.io/badge/▶  Ver%20Apresentação-F5C518?style=for-the-badge&logoColor=black" alt="Ver Apresentação"/>
   </a>
 
