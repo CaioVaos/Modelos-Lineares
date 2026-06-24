@@ -4,20 +4,125 @@
     "href": "trabalho/index.html#introdução-1",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "1.1 Introdução",
-    "text": "1.1 Introdução\n\n\n\nO que é o IMDb?\n\nMaior base pública de dados sobre filmes e séries do mundo\nFundado em 1990, atualmente pertencente à Amazon\nUsuários registrados atribuem notas de 1 a 10 por título\nA nota exibida é a média ponderada dos votos recebidos\n\n\n\n\nRelevância:\n\nA nota IMDb influencia decisões de distribuição e streaming\nServe como proxy de qualidade percebida pelo público geral\nAmplamente usada em pesquisas de preferência do consumidor\n\n\n\n\n\n\nNa Literatura:\n\nSharda & Delen (2006): redes neurais para prever bilheteria usando atributos do IMDb\nGhiassi et al. (2015): combinação de dados do Twitter e IMDb para predição de receita em pré-estreia\nFatores como gênero, duração e ano de lançamento aparecem recorrentemente como preditores relevantes\nModelos de regressão são a abordagem mais comum para explicar variação nas notas"
+    "text": "1.1 Introdução\n\n\n\nO que é o IMDb?\n\nMaior base de dados online sobre filmes e séries.\nUsuários registrados atribuem notas de 1 a 10 por título.\nA nota exibida é a média ponderada dos votos recebidos.\n\n\n\n\nRelevância:\n\nA nota IMDb influencia decisões de distribuição e streaming\nServe como métrica de qualidade percebida pelo público geral\nAmplamente usada em pesquisas de preferência do consumidor\n\n\n\n\n\n\nNa Literatura:\n\nHsu et al. (2014): modelos de combinação linear, regressão linear múltipla e redes neurais para prever avaliações de usuários com atributos do IMDb.\nMiyashiro (2017): regressão linear com engenharia de atributos e termos de interação para predição de notas do IMDb.\nBurns (2018): regressão linear para prever notas e identificar preditores significativos, como gênero, duração e tipo de filme.\nChandra (2019): modelo de regressão com seleção de variáveis (forward/backward) para prever notas de blockbusters futuros.\nCini & Abela (2025): Processamento de Linguagem Natural (NLP) e SVR aplicados a roteiros e legendas para prever a nota do público no estágio de green-lighting.\nRudro et al. (2025): modelo híbrido Meta-Ensemble Predictor (MEP) que integra Gradient Boosting e redes neurais profundas para predição de alta precisão."
   },
   {
     "objectID": "trabalho/index.html#os-dados",
     "href": "trabalho/index.html#os-dados",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "2.1 Os dados",
-    "text": "2.1 Os dados\n\n\n\nOrigem dos Dados\n\nFonte original: Kaggle - Raed Addala\n\n\n“most popular 500–600 movies per year from 1920 to 2025”\n\n\nTratamento Preliminar: Base Dos Dados - Patrick Teixeira\n\n\n\n\nComposição dos Dados (Completo)\n\nObservações: 33.600 linhas;\nVariáveis: 23 colunas;\nCobertura: 1960 – 2024.\n\n\n\n\n\n\nEstrutura dos Dados (Completo)\n\n\n\nVariável\nDescrição\nTipo\n\n\n\n\nid\nIdentificador do filme\nSTRING\n\n\ntitle\nTítulo\nSTRING\n\n\nlink\nLink IMDb\nSTRING\n\n\nyear\nAno de lançamento\nINT64\n\n\nduration\nDuração\nSTRING\n\n\nrating_mpa\nClassificação etária (MPA)\nFLOAT64\n\n\nrating_imdb\nNota IMDb\nFLOAT64\n\n\nvote\nNúmero de votos\nINT64\n\n\nbudget\nOrçamento (USD)\nFLOAT64\n\n\ngross_world_wide\nBilheteria mundial (USD)\nFLOAT64\n\n\ngross_us_canada\nBilheteria EUA/Canadá (USD)\nFLOAT64\n\n\ngross_opening_weekend\nBilheteria de estreia (USD)\nFLOAT64\n\n\ndirector\nDiretores\nSTRING\n\n\nwriter\nRoteiristas\nSTRING\n\n\nstar\nEstrelas\nSTRING\n\n\ngenre\nGêneros\nSTRING\n\n\ncountry_origin\nPaíses de origem\nSTRING\n\n\nfilming_location\nLocais de filmagem\nSTRING\n\n\nproduction_company\nProdutoras\nSTRING\n\n\nlanguage\nIdiomas\nSTRING\n\n\nwin\nPrêmios ganhos\nINT64\n\n\nnomination\nIndicações\nINT64\n\n\noscar\nIndicações ao Oscar\nINT64"
+    "text": "2.1 Os dados\n\n\n\nOrigem dos Dados\n\nFonte original: Kaggle - Raed Addala\nTratamento Preliminar: Base Dos Dados - Patrick Teixeira\n\n\n\n\nComposição dos Dados (Completo)\n\nObservações: 33.600 linhas;\nVariáveis: 23 colunas;\n\nNuméricas: 11;\nCategóricas: 12;\n\nCobertura: 1960 – 2024.\n\n\n\n\n\n\nEstrutura dos Dados (Completo)\n\n\n\nVariável\nDescrição\nTipo\n\n\n\n\nid\nIdentificador do filme\nSTRING\n\n\ntitle\nTítulo\nSTRING\n\n\nlink\nLink IMDb\nSTRING\n\n\nyear\nAno de lançamento\nINT64\n\n\nduration\nDuração\nSTRING\n\n\nrating_mpa\nClassificação etária (MPA)\nFLOAT64\n\n\nrating_imdb\nNota IMDb\nFLOAT64\n\n\nvote\nNúmero de votos\nINT64\n\n\nbudget\nOrçamento (USD)\nFLOAT64\n\n\ngross_world_wide\nBilheteria mundial (USD)\nFLOAT64\n\n\ngross_us_canada\nBilheteria EUA/Canadá (USD)\nFLOAT64\n\n\ngross_opening_weekend\nBilheteria de estreia (USD)\nFLOAT64\n\n\ndirector\nDiretores\nSTRING\n\n\nwriter\nRoteiristas\nSTRING\n\n\nstar\nEstrelas\nSTRING\n\n\ngenre\nGêneros\nSTRING\n\n\ncountry_origin\nPaíses de origem\nSTRING\n\n\nfilming_location\nLocais de filmagem\nSTRING\n\n\nproduction_company\nProdutoras\nSTRING\n\n\nlanguage\nIdiomas\nSTRING\n\n\nwin\nPrêmios ganhos\nINT64\n\n\nnomination\nIndicações\nINT64\n\n\noscar\nIndicações ao Oscar\nINT64"
   },
   {
     "objectID": "trabalho/index.html#metodologia-1",
     "href": "trabalho/index.html#metodologia-1",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "3.1 Metodologia",
-    "text": "3.1 Metodologia\n\n\n\n\n1\n\n\nAnálise Exploratória\n\n\nEstatísticas descritivas, histogramas e dispersão\n\n\n\n\n→\n\n\n\n\n2\n\n\nPré-processamento\n\n\nOutliers, NAs, log de vote e dummies\n\n\n\n\n→\n\n\n\n\n3\n\n\nAjuste dos Modelos\n\n\nSimples → múltipla → stepwise AIC/BIC\n\n\n\n\n→\n\n\n\n\n4\n\n\nDiagnóstico & Seleção\n\n\nResíduos, ANOVA e R² ajustado\n\n\n\n\n\n\n\nVariáveis Explicativas\n\nduration budget gross_world_wide nomination\n\n\n\n\n   \n\n\n\nVariável Respota\nrating_imdb"
+    "text": "3.1 Metodologia\n\n\n\n\n1\n\n\nAnálise Exploratória\n\n\nNAs, estatísticas descritivas e dispersão\n\n\n\n\n→\n\n\n\n\n2\n\n\nPré-processamento\n\n\nAgrupamento de categorias e log de variáveis\n\n\n\n\n⇄\n\n\n\n\n3\n\n\nAjuste dos Modelos\n\n\nModelo básico e refinamento\n\n\n\n\n⇄\n\n\n\n\n4\n\n\nAnálise dos Resíduos\n\n\nResíduos, leverage e distância de Cook\n\n\n\n\n\n\n\nVariáveis Explicativas\n\nyear duration_min vote nomination oscar rating_mpa genre language\n\n\n\n\n   \n\n\n\nVariável Resposta\nrating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#nas-categorias",
+    "href": "trabalho/index.html#nas-categorias",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.1 NAs & Categorias",
+    "text": "4.1 NAs & Categorias\n\n\n\n\n\n\nVariável\n% NAs\n\n\n\n\nbudget\n64.8%\n\n\ngross_opening_weekend\n53.8%\n\n\ngross_us_canada\n47.7%\n\n\ngross_world_wide\n45.8%\n\n\nrating_imdb\n0.41%\n\n\nvote\n0.41%\n\n\n…\n0.00%\n\n\n\n\n\n\n\n\n\n\n\nVariável\nCategorias\n\n\n\n\nstar\n32.813\n\n\nwriter\n27.124\n\n\nproduction_company\n25.940\n\n\ndirector\n14.521\n\n\nfilming_location\n12.376\n\n\ngenre\n8.541\n\n\ncountry_origin\n2.939\n\n\nlanguage\n2.710"
+  },
+  {
+    "objectID": "trabalho/index.html#year-x-rating_imdb",
+    "href": "trabalho/index.html#year-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.2 year X rating_imdb",
+    "text": "4.2 year X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#duration-x-rating_imdb",
+    "href": "trabalho/index.html#duration-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.3 duration X rating_imdb",
+    "text": "4.3 duration X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#vote-x-rating_imdb",
+    "href": "trabalho/index.html#vote-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.4 vote X rating_imdb",
+    "text": "4.4 vote X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#nomination-x-rating_imdb",
+    "href": "trabalho/index.html#nomination-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.5 nomination X rating_imdb",
+    "text": "4.5 nomination X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#oscar-x-rating_imdb",
+    "href": "trabalho/index.html#oscar-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.6 oscar X rating_imdb",
+    "text": "4.6 oscar X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#rating_mpa-x-rating_imdb",
+    "href": "trabalho/index.html#rating_mpa-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.7 rating_mpa X rating_imdb",
+    "text": "4.7 rating_mpa X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#genre-x-rating_imdb",
+    "href": "trabalho/index.html#genre-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.8 genre X rating_imdb",
+    "text": "4.8 genre X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#language-x-rating_imdb",
+    "href": "trabalho/index.html#language-x-rating_imdb",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.9 language X rating_imdb",
+    "text": "4.9 language X rating_imdb"
+  },
+  {
+    "objectID": "trabalho/index.html#o-modelo",
+    "href": "trabalho/index.html#o-modelo",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.10 O modelo",
+    "text": "4.10 O modelo\n\n\n\nsummary(modelo) \n\n\nCall:\nlm(formula = rating_imdb ~ year + log1p(duration_min) + log1p(vote) + \n    log1p(nomination) + log1p(oscar) + rating_mpa + genre + language, \n    data = df_modelo)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.0779 -0.5078  0.0776  0.5995  4.1696 \n\nCoefficients:\n                              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                  8.6700164  0.6727711  12.887  &lt; 2e-16 ***\nyear                        -0.0041101  0.0003327 -12.355  &lt; 2e-16 ***\nlog1p(duration_min)          0.8310346  0.0299915  27.709  &lt; 2e-16 ***\nlog1p(vote)                  0.1315217  0.0026871  48.945  &lt; 2e-16 ***\nlog1p(nomination)            0.2204118  0.0056208  39.214  &lt; 2e-16 ***\nlog1p(oscar)                 0.2395408  0.0238217  10.056  &lt; 2e-16 ***\nrating_mpaAdulto/Restrito   -0.0815003  0.0176894  -4.607 4.09e-06 ***\nrating_mpaLivre              0.3409150  0.0281143  12.126  &lt; 2e-16 ***\nrating_mpaModerado           0.0955859  0.0217241   4.400 1.09e-05 ***\nrating_mpaOutros             0.3767990  0.0220824  17.063  &lt; 2e-16 ***\nrating_mpaSem Classificação  0.2033380  0.0211306   9.623  &lt; 2e-16 ***\ngenreComédia/Musical         0.2044161  0.0153969  13.276  &lt; 2e-16 ***\ngenreDocumentário/Crime      0.9367980  0.0201568  46.475  &lt; 2e-16 ***\ngenreDrama                   0.4977536  0.0153768  32.371  &lt; 2e-16 ***\ngenreFicção/Fantasia         0.2204461  0.0289151   7.624 2.53e-14 ***\ngenreOutros                  0.7441489  0.1569047   4.743 2.12e-06 ***\ngenreTerror/Suspense        -0.2527408  0.0207588 -12.175  &lt; 2e-16 ***\nlanguageLínguas Asiáticas    0.3527311  0.0202289  17.437  &lt; 2e-16 ***\nlanguageLínguas Europeias    0.2988515  0.0233405  12.804  &lt; 2e-16 ***\nlanguageLínguas Latinas      0.1476783  0.0163625   9.025  &lt; 2e-16 ***\nlanguageOutros               0.7946266  0.0265996  29.874  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.9228 on 32829 degrees of freedom\nMultiple R-squared:  0.3488,    Adjusted R-squared:  0.3484 \nF-statistic: 879.4 on 20 and 32829 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\nanova(modelo) \n\nAnalysis of Variance Table\n\nResponse: rating_imdb\n                       Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    \nyear                    1   468.5   468.5  550.192 &lt; 2.2e-16 ***\nlog1p(duration_min)     1  3947.8  3947.8 4635.998 &lt; 2.2e-16 ***\nlog1p(vote)             1  1644.9  1644.9 1931.669 &lt; 2.2e-16 ***\nlog1p(nomination)       1  2769.7  2769.7 3252.531 &lt; 2.2e-16 ***\nlog1p(oscar)            1    59.6    59.6   69.965 &lt; 2.2e-16 ***\nrating_mpa              5  2169.1   433.8  509.456 &lt; 2.2e-16 ***\ngenre                   6  3032.1   505.4  593.460 &lt; 2.2e-16 ***\nlanguage                4   884.8   221.2  259.764 &lt; 2.2e-16 ***\nResiduals           32829 27955.3     0.9                       \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "trabalho/index.html#fivs",
+    "href": "trabalho/index.html#fivs",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.11 FIVs",
+    "text": "4.11 FIVs\n\ncar::vif(modelo)\n\n                        GVIF Df GVIF^(1/(2*Df))\nyear                1.523857  1        1.234446\nlog1p(duration_min) 1.281781  1        1.132158\nlog1p(vote)         1.766697  1        1.329172\nlog1p(nomination)   1.674393  1        1.293984\nlog1p(oscar)        1.224438  1        1.106543\nrating_mpa          2.257262  5        1.084821\ngenre               1.282883  6        1.020976\nlanguage            1.816601  4        1.077476"
+  },
+  {
+    "objectID": "trabalho/index.html#resíduos-studentizados",
+    "href": "trabalho/index.html#resíduos-studentizados",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.12 Resíduos Studentizados",
+    "text": "4.12 Resíduos Studentizados"
+  },
+  {
+    "objectID": "trabalho/index.html#qq-plot",
+    "href": "trabalho/index.html#qq-plot",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.13 QQ-plot",
+    "text": "4.13 QQ-plot"
+  },
+  {
+    "objectID": "trabalho/index.html#alavanca-influência",
+    "href": "trabalho/index.html#alavanca-influência",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "4.14 Alavanca & Influência",
+    "text": "4.14 Alavanca & Influência"
+  },
+  {
+    "objectID": "trabalho/index.html#conclusão-1",
+    "href": "trabalho/index.html#conclusão-1",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "5.1 Conclusão",
+    "text": "5.1 Conclusão\n\n\n\nO Modelo\n\nR² ajustado: 0.3484;\nHeterocedástico;\nResíduos não-normais;\nMulticolinearidade ausente;\nIndependência ausente.\n\n\n\n\n\n\nMelhorias\n\nAdicição de outras variável, após um redução de categorias;\nPossível modelo logístico, com a nota sendo discretizada em faixas."
   }
 ]
