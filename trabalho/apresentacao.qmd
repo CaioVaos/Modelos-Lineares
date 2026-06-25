@@ -69,7 +69,7 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
 
 ::: {.column width="47.5%"}
 
-::: {.box-gold style="font-size: 0.6em;"}
+::: {.box-gold style="font-size: 0.69em;"}
 [**Na Literatura:**]{.underline}
 
 - **Hsu et al. (2014)**: modelos de combinação linear, regressão linear múltipla e redes neurais para prever avaliações de usuários com atributos do IMDb.
@@ -831,8 +831,7 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
 - R² ajustado: 0.3484; 
 - Heterocedástico;
 - Resíduos não-normais;
-- Multicolinearidade ausente;
-- Independência ausente.
+- Multicolinearidade ausente.
 
 :::
 
@@ -848,7 +847,7 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
 
 [**Melhorias**]{.underline}
 
-- Adicição de outras variável, após um redução de categorias;
+- Adição de outras variável, após uma redução de categorias;
 - Possível modelo logístico, com a nota sendo discretizada em faixas.
 
 :::

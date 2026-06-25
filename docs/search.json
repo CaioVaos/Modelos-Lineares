@@ -123,6 +123,6 @@
     "href": "trabalho/index.html#conclusão-1",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "5.1 Conclusão",
-    "text": "5.1 Conclusão\n\n\n\nO Modelo\n\nR² ajustado: 0.3484;\nHeterocedástico;\nResíduos não-normais;\nMulticolinearidade ausente;\nIndependência ausente.\n\n\n\n\n\n\nMelhorias\n\nAdicição de outras variável, após um redução de categorias;\nPossível modelo logístico, com a nota sendo discretizada em faixas."
+    "text": "5.1 Conclusão\n\n\n\nO Modelo\n\nR² ajustado: 0.3484;\nHeterocedástico;\nResíduos não-normais;\nMulticolinearidade ausente.\n\n\n\n\n\n\nMelhorias\n\nAdição de outras variável, após uma redução de categorias;\nPossível modelo logístico, com a nota sendo discretizada em faixas."
   }
 ]
