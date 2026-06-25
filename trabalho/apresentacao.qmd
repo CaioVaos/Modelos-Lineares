@@ -769,6 +769,7 @@ p <- length(coef(modelo))
 n <- nobs(modelo)
 
 limite_cook <- (2 + p) / n
+limite_leverage <- 2 * p / n
 
 h_seq <- seq(min(df_diag$h[df_diag$h > 0]), max(df_diag$h) * 1.02, length.out = 200)
 
@@ -796,6 +797,7 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
   scale_size_manual(values = c("FALSE" = 1.1, "TRUE" = 1.1)) +
   geom_hline(yintercept = 0, linetype = "dotted", color = "#9A9080", linewidth = 0.5) +
   geom_vline(xintercept = 0, linetype = "dotted", color = "#9A9080", linewidth = 0.5) +
+  geom_vline(xintercept = limite_leverage, linetype = "dashed", color = "#D97706", linewidth = 0.8) +
   geom_line(data = df_curvas, aes(x = h, y = cook_lim_pos), color = "#D97706", linetype = "dashed", linewidth = 0.8, inherit.aes = FALSE) +
   geom_line(data = df_curvas, aes(x = h, y = cook_lim_neg), color = "#D97706", linetype = "dashed", linewidth = 0.8, inherit.aes = FALSE) +
   coord_cartesian(ylim = range(df_diag$rstud) * 1.1) +

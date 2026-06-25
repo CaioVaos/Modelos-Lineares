@@ -114,15 +114,6 @@
 .highlight-gold { color: #F5C518; font-weight: 700; }
 .highlight-copper   { color: #D97706; font-weight: 700; }
 
-/* ===== Código ===== */
-.reveal pre code {
-  font-size: 0.78em;
-  background: #1A1810;
-  color: #F5C518;
-  border-radius: 10px;
-  padding: 1em;
-}
-
 /* ===== Slide Final ===== */
 .reveal .final-slide {
   background: linear-gradient(
@@ -271,71 +262,4 @@ code.gold {
   color: #F5C518;
   padding: 2px 6px;
   border-radius: 4px;
-}
-
-/* ===== Blocos de código Quarto ===== */
-
-.reveal div.sourceCode {
-  background: #1A1810;
-  border-left: 5px solid #F5C518;
-  border-radius: 10px;
-  padding: 0.5em;
-  margin: 0.5em 0;
-}
-
-.reveal div.sourceCode pre {
-  background: transparent !important;
-  font-size: 0.75em;
-  border: none;
-  margin: 0;
-}
-
-.reveal div.sourceCode code {
-  background: transparent !important;
-  font-family: "JetBrains Mono", "Fira Code", monospace;
-  color: #E8E8F0;
-}
-
-/* ===== Highlight de sintaxe (estilo tradicional, levemente adaptado ao tema) ===== */
-
-.reveal div.sourceCode code span.co { color: #6B7280; font-style: italic; } /* comentários */
-.reveal div.sourceCode code span.fu { color: #F5C518; }                    /* funções */
-.reveal div.sourceCode code span.st { color: #93C572; }                    /* strings */
-.reveal div.sourceCode code span.dv,
-.reveal div.sourceCode code span.fl { color: #D97706; }                    /* números */
-.reveal div.sourceCode code span.kw { color: #C586C0; font-weight: 600; }  /* keywords */
-.reveal div.sourceCode code span.cf { color: #C586C0; font-weight: 600; }  /* control flow */
-.reveal div.sourceCode code span.op { color: #9A9080; }                    /* operadores */
-.reveal div.sourceCode code span.va { color: #E8E8F0; }                    /* variáveis */
-.reveal div.sourceCode code span.cn { color: #60A5FA; }                    /* constantes (TRUE/FALSE/NA) */
-.reveal div.sourceCode code span.sc { color: #9A9080; }                    /* pontuação/separadores */
-
-/* ===== Scroll do código ===== */
-
-.reveal div.sourceCode pre {
-  overflow-x: auto !important;
-
-  scrollbar-width: thin;
-  scrollbar-color: #F5C518 #1A1810;
-}
-
-/* Chrome / Edge / Safari */
-
-.reveal div.sourceCode pre::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-}
-
-.reveal div.sourceCode pre::-webkit-scrollbar-track {
-  background: #1A1810;
-  border-radius: 4px;
-}
-
-.reveal div.sourceCode pre::-webkit-scrollbar-thumb {
-  background: #F5C518;
-  border-radius: 4px;
-}
-
-.reveal div.sourceCode pre::-webkit-scrollbar-thumb:hover {
-  background: #D97706;
 }
