@@ -69,15 +69,21 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
 
 ::: {.column width="47.5%"}
 
-::: {.box-gold style="font-size: 0.69em;"}
+::: {.box-gold style="font-size: 0.7em;"}
 [**Na Literatura:**]{.underline}
 
-- **Hsu et al. (2014)**: modelos de combinação linear, regressão linear múltipla e redes neurais para prever avaliações de usuários com atributos do IMDb.
-- **Miyashiro (2017)**: regressão linear com engenharia de atributos e termos de interação para predição de notas do IMDb.
-- **Burns (2018)**: regressão linear para prever notas e identificar preditores significativos, como gênero, duração e tipo de filme.
-- **Chandra (2019)**: modelo de regressão com seleção de variáveis (forward/backward) para prever notas de blockbusters futuros.
-- **Cini & Abela (2025)**: Processamento de Linguagem Natural (NLP) e SVR aplicados a roteiros e legendas para prever a nota do público no estágio de green-lighting.
-- **Rudro et al. (2025)**: modelo híbrido Meta-Ensemble Predictor (MEP) que integra Gradient Boosting e redes neurais profundas para predição de alta precisão.
+- **Hsu et al. (2014)**:
+
+> "some predictors profoundly affect user rating, such as writers, actors and directors."
+
+- **Miyashiro (2017)**: Modelo inicial probre. Aplicou MMQP na variável oscar.
+- **Burns (2018)**: Modelo com 5 preditores teve um R² de 0,2993.
+- **Chandra (2019)**: Modelos teve FIVs altos. R² final de 0,365.
+- **Cini & Abela (2025)**: 
+
+> "Many factors that influence a movie’s success (such as audience reception or cultural timing) are unpredictable"
+
+- **Rudro et al. (2025)**: XGBoost com R² de 0,3748
 
 :::
 
@@ -105,7 +111,7 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
 <br>
 
 ::: {.box-gold style="font-size: 0.8em;"}
-[**Composição dos Dados**]{.underline} (Completo)
+[**Composição dos Dados**]{.underline}
 
 - Observações: 33.600 linhas;
 - Variáveis: 23 colunas;
@@ -124,7 +130,7 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
 
 ::: {.box-gold style="font-size: 0.75em;"}
 
-[**Estrutura dos Dados**]{.underline} (Completo)
+[**Estrutura dos Dados**]{.underline}
 
 | Variável               | Descrição                    | Tipo    |
 |------------------------|------------------------------|---------|
@@ -226,7 +232,6 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
   <code class="copper">duration_min</code>
   <code class="copper">vote</code>
   <code class="copper">nomination</code>
-  <code class="copper">oscar</code>
   <code class="copper">rating_mpa</code>
   <code class="copper">genre</code>
   <code class="copper">language</code>
@@ -483,53 +488,6 @@ ggplot(df_nomination_facet, aes(x = valor, y = rating_imdb)) +
   )
 ```
 
-## oscar X rating_imdb
-
-```{r}
-#| fig-align: center
-#| out-width: "100%"
-#| out-height: "80%"
-df_oscar_facet <- df_modelo %>%
-  transmute(
-    rating_imdb,
-    `Número de indicações ao oscar`     = oscar,
-    `log do Número de indicações ao oscar` = log1p(oscar)
-  ) %>%
-  pivot_longer(
-    cols = -rating_imdb,
-    names_to  = "transformacao",
-    values_to = "valor"
-  ) %>%
-  mutate(transformacao = factor(transformacao, levels = c("Número de indicações ao oscar", "log do Número de indicações ao oscar")))
-
-ggplot(df_oscar_facet, aes(x = valor, y = rating_imdb)) +
-  geom_point(
-    alpha = 0.5,
-    size = 1.3,
-    color = "#F5C518"
-  ) +
-  facet_wrap(~ transformacao, scales = "free_x") +
-  labs(
-    x = NULL,
-    y = "Nota IMDb"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.background = element_rect(fill = "#141414",color = NA),
-    panel.background = element_rect(fill = "#141414", color = NA),
-    panel.border = element_rect(color = "#D97706", fill = NA, linewidth = 0.8),
-    panel.grid.major = element_line(color = "#2A2A2A", linewidth = 0.3),
-    panel.grid.minor = element_blank(),
-    panel.spacing = unit(1, "lines"),
-    axis.text = element_text(color = "#E8E8F0"),
-    axis.title = element_text(color = "#E8E8F0", face = "bold"),
-    plot.title = element_text(color = "#F5C518",hjust = 0.5, face = "bold", size = 16),
-    legend.position = "none",
-    strip.background = element_rect(fill = "#1A1810", color = NA),
-    strip.text = element_text(color = "#F5C518", face = "bold", size = 12)
-  )
-```
-
 ## rating_mpa X rating_imdb
 
 ```{r}
@@ -627,11 +585,14 @@ df_modelo %>%
 
 ```{r}
 #| fig-align: center
+pesos_nomination <- log1p(df_modelo$nomination) + 1
+
 modelo <- lm(
   rating_imdb ~ year + log1p(duration_min) + log1p(vote) +
-    log1p(nomination) + log1p(oscar) +
+    log1p(nomination) + 
     rating_mpa + genre + language,
-  data = df_modelo
+  data = df_modelo,
+  weights = pesos_nomination
 )
 ```
 
@@ -641,7 +602,8 @@ modelo <- lm(
 
 ```{r}
 #| echo: true
-summary(modelo) 
+#| class-output: scroll-output
+summary(modelo)
 ```
 
 :::
@@ -830,7 +792,7 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
 
 [**O Modelo**]{.underline}
 
-- R² ajustado: 0.3484; 
+- R² ajustado: 0.3949; 
 - Heterocedástico;
 - Resíduos não-normais;
 - Multicolinearidade ausente.
@@ -857,5 +819,22 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
 :::
 
 ::::
+
+# Referências {.glass style="font-size: 0.65em;"}
+
+- CINI, Karl; ABELA, John. Forecasting film audience ratings: A natural language processing approach to script and production data. Entertainment Computing, v. 55, 101043, 2025
+
+- HSU, Ping-Yu; SHEN, Yuan-Hong; XIE, Xiang-An. Predicting Movies User Ratings with Imdb Attributes. In: Rough Sets and Knowledge Technology (RSKT). Springer International Publishing, p. 444-453, 2014
+
+- RUDRO, Md. Faishal Ahmed et al. Meta-Ensemble Learning for IMDb Ratings: A Stacked Hybrid Model Integrating Gradient Boosting and Deep Neural Networks. Research Square (Preprint), 2025. DOI: 10.21203/rs.3.rs-6153928/v1
+
+- Projetos e Repositórios Técnicos (GitHub/RPubs)
+BURNS, Nathan. Linear-Regression-for-IMDB-Movie-Ratings. GitHub Repository, 2018. Disponível em: https://github.com/nateofspades/Linear-Regression-for-IMDB-Movie-Ratings
+
+- CHANDRA, Venkatesh. IMDb-Movie-Ratings-Predictions-using-R. GitHub Repository, 2019. Disponível em: https://github.com/chandravenky/IMDb-Movie-Ratings-Predictions-using-R
+
+- MIYASHIRO, Caio H. K. Regression Modelling Project: Predictions for the IMDB Ratings. RPubs, [s.d.]. Disponível em: https://rpubs.com/caiomiyashiro/126938
+
+- ALMEIDA, Núbia Karla de Oliveira. Caderno de Anotações de Modelos Lineares 1: Graduação em Estatística. Niterói: Universidade Federal Fluminense (UFF), 2025.
 
 # Fim. {.unnumbered .final-slide}

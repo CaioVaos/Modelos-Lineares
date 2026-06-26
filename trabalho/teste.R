@@ -76,3 +76,38 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
     plot.title = element_text(color = "#F5C518", hjust = 0.5, face = "bold", size = 16),
     legend.position = "none"
   )
+
+
+# Identificação:
+# 1. Influente + alavanca (>0.02) + resíduo positivo
+rotulos1 <- df_diag %>%
+  filter(
+    cook > limite_cook,
+    h > 0.02,
+    rstud > 0
+  ) %>%
+  pull(obs_id)
+rotulos1
+df_modelo[rotulos1, ]
+
+# 2. Influente + alavanca (>0.02) + resíduo negativo
+rotulos2 <- df_diag %>%
+  filter(
+    cook > limite_cook,
+    h > 0.02,
+    rstud < 0
+  ) %>%
+  pull(obs_id)
+rotulos2
+df_modelo[rotulos2, ]
+
+# 3. Influente + resíduo negativo + alavanca <0.01
+rotulos3 <- df_diag %>%
+  filter(
+    cook > limite_cook,
+    h < 0.01,
+    rstud < 0
+  ) %>%
+  pull(obs_id)
+rotulos3
+df_modelo[rotulos3, ]

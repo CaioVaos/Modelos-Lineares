@@ -114,6 +114,13 @@
 .highlight-gold { color: #F5C518; font-weight: 700; }
 .highlight-copper   { color: #D97706; font-weight: 700; }
 
+/* ===== Glass Referencia ===== */
+.reveal .slides section.glass {
+  background: rgba(42, 38, 24, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
 /* ===== Slide Final ===== */
 .reveal .final-slide {
   background: linear-gradient(
@@ -243,8 +250,7 @@
 .reveal table.tabela-tema-destaque1 tbody tr:nth-child(8) td,
 .reveal table.tabela-tema-destaque1 tbody tr:nth-child(16) td,
 .reveal table.tabela-tema-destaque1 tbody tr:nth-child(20) td,
-.reveal table.tabela-tema-destaque1 tbody tr:nth-child(22) td,
-.reveal table.tabela-tema-destaque1 tbody tr:nth-child(23) td{
+.reveal table.tabela-tema-destaque1 tbody tr:nth-child(22) td{
   background-color: rgba(245, 197, 24, 0.18) !important;
   color: #D97706 !important;
   font-weight: 700;
@@ -262,4 +268,11 @@ code.gold {
   color: #F5C518;
   padding: 2px 6px;
   border-radius: 4px;
+}
+/* ===== scroll da saido do chunk ===== */
+.scroll-output pre {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 300px;
+  white-space: pre;
 }
