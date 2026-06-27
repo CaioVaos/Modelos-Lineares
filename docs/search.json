@@ -18,7 +18,7 @@
     "href": "trabalho/index.html#metodologia-1",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "3.1 Metodologia",
-    "text": "3.1 Metodologia\n\n\n\n\n1\n\n\nAnálise Exploratória\n\n\nNAs, estatísticas descritivas e dispersão\n\n\n\n\n→\n\n\n\n\n2\n\n\nPré-processamento\n\n\nAgrupamento de categorias e log de variáveis\n\n\n\n\n⇄\n\n\n\n\n3\n\n\nAjuste dos Modelos\n\n\nModelo básico e refinamento\n\n\n\n\n⇄\n\n\n\n\n4\n\n\nAnálise dos Resíduos\n\n\nResíduos, leverage e distância de Cook\n\n\n\n\n\n\n\nVariáveis Explicativas\n\nyear duration_min vote nomination rating_mpa genre language\n\n\n\n\n   \n\n\n\nVariável Resposta\nrating_imdb"
+    "text": "3.1 Metodologia\n\n\n\n\n1\n\n\nAnálise Exploratória\n\n\nNAs, estatísticas descritivas e dispersão\n\n\n\n\n→\n\n\n\n\n2\n\n\nPré-processamento\n\n\nAgrupamento de categorias e log de variáveis\n\n\n\n\n⇄\n\n\n\n\n3\n\n\nAjuste dos Modelos\n\n\nModelos completos, transformados e ponderados\n\n\n\n\n⇄\n\n\n\n\n4\n\n\nAnálise dos Resíduos\n\n\nResíduos, leverage e distância de Cook\n\n\n\n\n\n\n\nVariáveis Explicativas\n\nyear duration_min vote nomination rating_mpa genre language\n\n\n\n\n   \n\n\n\nVariável Resposta\nrating_imdb"
   },
   {
     "objectID": "trabalho/index.html#nas-categorias",
