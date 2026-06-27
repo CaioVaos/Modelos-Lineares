@@ -157,6 +157,7 @@
   font-size: 0.75em;
   border-radius: 10px;
   overflow: hidden;
+  background-color: #1A1810;
 }
 
 /* ===== Tema: cabeçalho ===== */
@@ -173,22 +174,28 @@
 }
 
 /* ===== Tema: corpo ===== */
+/* Fundo aplicado diretamente no td (e não só no tr) porque, no
+   Android Chrome, quando o slide do RevealJS é escalado via
+   transform: scale() em telas pequenas, a herança/repintura do
+   background definido em tr nem sempre é respeitada pelas células
+   quando a tabela usa o hack de display:table/block do .tabela-scroll.
+   Definir a cor diretamente no td evita esse bug. */
 .reveal table.tabela-tema tbody td {
   padding: 8px 10px;
   border-bottom: 1px solid #2A2A2A;
   color: #E8E8F0;
 }
 
-.reveal table.tabela-tema tbody tr:nth-child(even) {
-  background-color: #222220;
+.reveal table.tabela-tema tbody tr:nth-child(even) td {
+  background-color: #222220 !important;
 }
 
-.reveal table.tabela-tema tbody tr:nth-child(odd) {
-  background-color: #1A1810;
+.reveal table.tabela-tema tbody tr:nth-child(odd) td {
+  background-color: #1A1810 !important;
 }
 
-.reveal table.tabela-tema tbody tr:hover {
-  background-color: rgba(245, 197, 24, 0.10);
+.reveal table.tabela-tema tbody tr:hover td {
+  background-color: rgba(245, 197, 24, 0.10) !important;
   transition: background-color 0.2s;
 }
 
@@ -203,6 +210,7 @@
 .tabela-scroll {
   display: block;
   width: 100%;
+  background-color: #1A1810;
 }
 
 .tabela-scroll thead {
@@ -239,6 +247,14 @@
   display: table;
   width: 100%;
   table-layout: fixed;
+  background-color: inherit;
+}
+
+/* Reforço extra: força fundo em TODA célula dentro de .tabela-scroll,
+   cobrindo o caso em que nem o nth-child do tr nem o td "normal"
+   pegam por causa do recálculo de layout no mobile. */
+.tabela-scroll tbody tr td {
+  background-color: inherit !important;
 }
 
 /* ===== Linhas destacadas tabela 1 ===== */

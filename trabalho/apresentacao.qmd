@@ -199,7 +199,7 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
 :::{.box-copper style="text-align:center;"}
 <div style="font-size:2em; font-weight:800; color:#D97706;">3</div>
 <div style="font-weight:700; margin-bottom:0.4em;">Ajuste dos Modelos</div>
-<div style="font-size:0.75em; color:#9A9080;">Modelo básico e refinamento</div>
+<div style="font-size:0.75em; color:#9A9080;">Modelos completos, transformados e ponderados</div>
 :::
 :::
 
