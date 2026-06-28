@@ -75,6 +75,12 @@ anova(modelo_pond_nomination)
 plot(modelo_pond_nomination)
 car::vif(modelo_pond_nomination)
 
+e_pond <- residuals(modelo_pond_nomination) * sqrt(pesos_nomination)
+h <- lm.influence(modelo_pond_nomination)$hat
+press_resid_pond <- e_pond / (1 - h)
+PRESS_pond <- sum(press_resid_pond^2)
+PRESS_pond
+
 ## Sem categorica ----
 modelo_sem_categoricas <- lm(
   rating_imdb ~ year + log1p(duration_min) + log1p(vote) +

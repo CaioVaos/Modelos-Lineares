@@ -600,12 +600,86 @@ modelo <- lm(
 
 :::: {.columns}
 
+::: {.column width="56%"}
+
+```{r}
+#| echo: true
+summary(modelo)
+```
+
+:::
+
+::: {.column width="4%"}
+
+:::
+
+::: {.column width="40%"}
+
+::: {.box-gold}
+
+- n = 32.850
+
+- weights = `nomination`
+
+- $R^{2}_{ajustado}$ = 0,3946
+
+- $p\text{-valor}_F$ < 2,2e-16
+
+- $\sqrt{QM_{res}}$ = 1,101
+
+-  $QM_{res}$ = 1,21
+
+:::
+
+:::
+
+::::
+
+## ANOVA
+
+:::: {.columns}
+
 ::: {.column width="48%"}
 
 ```{r}
 #| echo: true
-#| class-output: scroll-output
-summary(modelo)
+anova(modelo) 
+```
+
+::: 
+
+::: {.column width="4%"}
+
+:::
+
+::: {.column width="48%"}
+
+::: {.box-gold}
+
+- $SQ_{reg}$ = 25.987
+
+- $SQ_{res}$ = 39.817
+
+- $SQ_{tot}$ = 65.804
+
+- $R^{2}$ = 0,3949
+
+:::
+
+:::
+
+::::
+
+## FIV`s & PRESS 
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+```{r}
+#| fig-align: center
+#| echo: true
+car::vif(modelo)
 ```
 
 :::
@@ -616,22 +690,19 @@ summary(modelo)
 
 ::: {.column width="48%"}
 
-```{r}
-#| echo: true
-anova(modelo) 
-```
+::: {.box-gold}
+
+- $PRESS$ = 39.876,13
+
+- $R^{2}_{predito}$ = 0,3940
+
+- $R^2$ = 0,3949
+
+:::
 
 :::
 
 ::::
-
-## FIVs
-
-```{r}
-#| fig-align: center
-#| echo: true
-car::vif(modelo)
-```
 
 ## Resíduos Studentizados
 
@@ -660,6 +731,8 @@ df_diag <- tibble(
 df_diag <- df_diag %>%
   mutate(fitted = fitted(modelo))
 
+count_rstud <- sum(abs(rstud) > 3)   
+
 ggplot(df_diag, aes(x = fitted, y = rstud)) +
   geom_point(
     alpha = 0.35,
@@ -669,7 +742,10 @@ ggplot(df_diag, aes(x = fitted, y = rstud)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "#9A9080", linewidth = 0.5) +
   geom_hline(yintercept = c(-3, 3), linetype = "dashed", color = "#D97706", linewidth = 0.9) +
   geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs"), color = "#D97706", se = FALSE, linewidth = 0.8) +
-  labs(x = "Valores ajustados", y = "Resíduo studentizado") +
+  labs(
+    x = "Valores ajustados",
+    y = "Resíduo studentizado",
+    caption = paste("Outliers:", count_rstud)) +
   theme_minimal() +
   theme(
     plot.background = element_rect(fill = "#141414", color = NA),
@@ -679,6 +755,7 @@ ggplot(df_diag, aes(x = fitted, y = rstud)) +
     axis.text = element_text(color = "#E8E8F0"),
     axis.title = element_text(color = "#E8E8F0", face = "bold"),
     plot.title = element_text(color = "#F5C518", hjust = 0.5, face = "bold", size = 16),
+    plot.caption = element_text(hjust = 0, color = "#E8E8F0"),
     legend.position = "none"
   )
 ```
@@ -748,6 +825,9 @@ df_curvas <- tibble(h = h_seq) %>%
   ) %>%
   filter(cook_lim_pos < 10)
 
+count_leverage <- sum(h > limite_leverage)
+count_cook <- sum(cook > limite_cook) 
+
 ggplot(df_diag, aes(x = h, y = rstud)) +
   geom_point(
     aes(
@@ -767,7 +847,10 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
   coord_cartesian(ylim = range(df_diag$rstud) * 1.1) +
   labs(
     x = "Leverage (hii)",
-    y = "Resíduo studentizado"
+    y = "Resíduo studentizado",
+    caption = paste(
+      "Pontos de alavanca:", count_leverage,
+      "|  Pontos de influência:", count_cook)
   ) +
   theme_minimal() +
   theme(
@@ -778,6 +861,7 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
     axis.text = element_text(color = "#E8E8F0"),
     axis.title = element_text(color = "#E8E8F0", face = "bold"),
     plot.title = element_text(color = "#F5C518",hjust = 0.5, face = "bold", size = 16),
+    plot.caption = element_text(hjust = 0, color = "#E8E8F0"),
     legend.position = "none"
   )
 ```
@@ -794,7 +878,7 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
 
 [**O Modelo**]{.underline}
 
-- R² ajustado: 0.3949; 
+- Explica 39,46% da variabilidade; 
 - Heterocedástico;
 - Resíduos não-normais;
 - Multicolinearidade ausente.
@@ -813,8 +897,8 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
 
 [**Melhorias**]{.underline}
 
-- Adição de outras variável, após uma redução de categorias;
-- Possível modelo logístico, com a nota sendo discretizada em faixas.
+- Adição de outras variáveis, após uma redução de categorias;
+- Possível modelo logístico, com a nota sendo discretizada.
 
 :::
 

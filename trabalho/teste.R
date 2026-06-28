@@ -3,13 +3,6 @@ library(ggrepel)
 
 df_modelo <- readRDS("trabalho/data/df_modelo_imdb.rds")
 
-modelo <- lm(
-  rating_imdb ~ year + log1p(duration_min) + log1p(vote) +
-    log1p(nomination) + log1p(oscar) +
-    rating_mpa + genre + language,
-  data = df_modelo
-)
-
 p <- length(coef(modelo))
 n <- nobs(modelo)
 

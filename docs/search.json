@@ -81,41 +81,48 @@
     "href": "trabalho/index.html#o-modelo",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "5.1 O modelo",
-    "text": "5.1 O modelo\n\n\n\nsummary(modelo)\n\n\nCall:\nlm(formula = rating_imdb ~ year + log1p(duration_min) + log1p(vote) + \n    log1p(nomination) + rating_mpa + genre + language, data = df_modelo, \n    weights = pesos_nomination)\n\nWeighted Residuals:\n    Min      1Q  Median      3Q     Max \n-9.2808 -0.6164  0.0881  0.7048  5.2603 \n\nCoefficients:\n                              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                 16.3969225  0.6510409  25.186  &lt; 2e-16 ***\nyear                        -0.0075882  0.0003166 -23.968  &lt; 2e-16 ***\nlog1p(duration_min)          0.6648642  0.0274909  24.185  &lt; 2e-16 ***\nlog1p(vote)                  0.1293616  0.0027010  47.894  &lt; 2e-16 ***\nlog1p(nomination)            0.2595312  0.0044210  58.705  &lt; 2e-16 ***\nrating_mpaAdulto/Restrito   -0.0231242  0.0148009  -1.562    0.118    \nrating_mpaLivre              0.2849136  0.0265382  10.736  &lt; 2e-16 ***\nrating_mpaModerado           0.1009161  0.0188213   5.362 8.29e-08 ***\nrating_mpaOutros             0.3173478  0.0199598  15.899  &lt; 2e-16 ***\nrating_mpaSem Classificação  0.1507154  0.0183654   8.207 2.36e-16 ***\ngenreComédia/Musical         0.2169183  0.0146512  14.806  &lt; 2e-16 ***\ngenreDocumentário/Crime      0.8926918  0.0189421  47.127  &lt; 2e-16 ***\ngenreDrama                   0.4749826  0.0141453  33.579  &lt; 2e-16 ***\ngenreFicção/Fantasia         0.2494093  0.0249359  10.002  &lt; 2e-16 ***\ngenreOutros                  0.7881906  0.1869496   4.216 2.49e-05 ***\ngenreTerror/Suspense        -0.1747896  0.0200234  -8.729  &lt; 2e-16 ***\nlanguageLínguas Asiáticas    0.2593797  0.0181292  14.307  &lt; 2e-16 ***\nlanguageLínguas Europeias    0.3045506  0.0218508  13.938  &lt; 2e-16 ***\nlanguageLínguas Latinas      0.1651758  0.0150728  10.959  &lt; 2e-16 ***\nlanguageOutros               0.6631813  0.0238120  27.851  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.101 on 32830 degrees of freedom\nMultiple R-squared:  0.3949,    Adjusted R-squared:  0.3946 \nF-statistic:  1128 on 19 and 32830 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\nanova(modelo) \n\nAnalysis of Variance Table\n\nResponse: rating_imdb\n                       Df Sum Sq Mean Sq F value    Pr(&gt;F)    \nyear                    1   1430  1429.9 1178.96 &lt; 2.2e-16 ***\nlog1p(duration_min)     1   6716  6715.7 5537.18 &lt; 2.2e-16 ***\nlog1p(vote)             1   4218  4217.8 3477.65 &lt; 2.2e-16 ***\nlog1p(nomination)       1   6194  6193.9 5106.97 &lt; 2.2e-16 ***\nrating_mpa              5   2074   414.9  342.08 &lt; 2.2e-16 ***\ngenre                   6   4253   708.9  584.46 &lt; 2.2e-16 ***\nlanguage                4   1102   275.6  227.21 &lt; 2.2e-16 ***\nResiduals           32830  39817     1.2                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+    "text": "5.1 O modelo\n\n\n\nsummary(modelo)\n\n\nCall:\nlm(formula = rating_imdb ~ year + log1p(duration_min) + log1p(vote) + \n    log1p(nomination) + rating_mpa + genre + language, data = df_modelo, \n    weights = pesos_nomination)\n\nWeighted Residuals:\n    Min      1Q  Median      3Q     Max \n-9.2808 -0.6164  0.0881  0.7048  5.2603 \n\nCoefficients:\n                              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                 16.3969225  0.6510409  25.186  &lt; 2e-16 ***\nyear                        -0.0075882  0.0003166 -23.968  &lt; 2e-16 ***\nlog1p(duration_min)          0.6648642  0.0274909  24.185  &lt; 2e-16 ***\nlog1p(vote)                  0.1293616  0.0027010  47.894  &lt; 2e-16 ***\nlog1p(nomination)            0.2595312  0.0044210  58.705  &lt; 2e-16 ***\nrating_mpaAdulto/Restrito   -0.0231242  0.0148009  -1.562    0.118    \nrating_mpaLivre              0.2849136  0.0265382  10.736  &lt; 2e-16 ***\nrating_mpaModerado           0.1009161  0.0188213   5.362 8.29e-08 ***\nrating_mpaOutros             0.3173478  0.0199598  15.899  &lt; 2e-16 ***\nrating_mpaSem Classificação  0.1507154  0.0183654   8.207 2.36e-16 ***\ngenreComédia/Musical         0.2169183  0.0146512  14.806  &lt; 2e-16 ***\ngenreDocumentário/Crime      0.8926918  0.0189421  47.127  &lt; 2e-16 ***\ngenreDrama                   0.4749826  0.0141453  33.579  &lt; 2e-16 ***\ngenreFicção/Fantasia         0.2494093  0.0249359  10.002  &lt; 2e-16 ***\ngenreOutros                  0.7881906  0.1869496   4.216 2.49e-05 ***\ngenreTerror/Suspense        -0.1747896  0.0200234  -8.729  &lt; 2e-16 ***\nlanguageLínguas Asiáticas    0.2593797  0.0181292  14.307  &lt; 2e-16 ***\nlanguageLínguas Europeias    0.3045506  0.0218508  13.938  &lt; 2e-16 ***\nlanguageLínguas Latinas      0.1651758  0.0150728  10.959  &lt; 2e-16 ***\nlanguageOutros               0.6631813  0.0238120  27.851  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.101 on 32830 degrees of freedom\nMultiple R-squared:  0.3949,    Adjusted R-squared:  0.3946 \nF-statistic:  1128 on 19 and 32830 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\nn = 32.850\nweights = nomination\n\\(R^{2}_{ajustado}\\) = 0,3946\n\\(p\\text{-valor}_F\\) &lt; 2,2e-16\n\\(\\sqrt{QM_{res}}\\) = 1,101\n\\(QM_{res}\\) = 1,21"
   },
   {
-    "objectID": "trabalho/index.html#fivs",
-    "href": "trabalho/index.html#fivs",
+    "objectID": "trabalho/index.html#anova",
+    "href": "trabalho/index.html#anova",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
-    "section": "5.2 FIVs",
-    "text": "5.2 FIVs\n\ncar::vif(modelo)\n\n                        GVIF Df GVIF^(1/(2*Df))\nyear                1.558420  1        1.248367\nlog1p(duration_min) 1.356850  1        1.164839\nlog1p(vote)         2.022012  1        1.421975\nlog1p(nomination)   1.948567  1        1.395911\nrating_mpa          2.270492  5        1.085455\ngenre               1.309478  6        1.022723\nlanguage            1.749327  4        1.072405"
+    "section": "5.2 ANOVA",
+    "text": "5.2 ANOVA\n\n\n\nanova(modelo) \n\nAnalysis of Variance Table\n\nResponse: rating_imdb\n                       Df Sum Sq Mean Sq F value    Pr(&gt;F)    \nyear                    1   1430  1429.9 1178.96 &lt; 2.2e-16 ***\nlog1p(duration_min)     1   6716  6715.7 5537.18 &lt; 2.2e-16 ***\nlog1p(vote)             1   4218  4217.8 3477.65 &lt; 2.2e-16 ***\nlog1p(nomination)       1   6194  6193.9 5106.97 &lt; 2.2e-16 ***\nrating_mpa              5   2074   414.9  342.08 &lt; 2.2e-16 ***\ngenre                   6   4253   708.9  584.46 &lt; 2.2e-16 ***\nlanguage                4   1102   275.6  227.21 &lt; 2.2e-16 ***\nResiduals           32830  39817     1.2                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\n\n\n\n\\(SQ_{reg}\\) = 25.987\n\\(SQ_{res}\\) = 39.817\n\\(SQ_{tot}\\) = 65.804\n\\(R^{2}\\) = 0,3949"
+  },
+  {
+    "objectID": "trabalho/index.html#fivs-press",
+    "href": "trabalho/index.html#fivs-press",
+    "title": "Análise de Regressão sobre Avaliações do IMDb",
+    "section": "5.3 FIV`s & PRESS",
+    "text": "5.3 FIV`s & PRESS\n\n\n\ncar::vif(modelo)\n\n                        GVIF Df GVIF^(1/(2*Df))\nyear                1.558420  1        1.248367\nlog1p(duration_min) 1.356850  1        1.164839\nlog1p(vote)         2.022012  1        1.421975\nlog1p(nomination)   1.948567  1        1.395911\nrating_mpa          2.270492  5        1.085455\ngenre               1.309478  6        1.022723\nlanguage            1.749327  4        1.072405\n\n\n\n\n\n\n\n\\(PRESS\\) = 39.876,13\n\\(R^{2}_{predito}\\) = 0,3940\n\\(R^2\\) = 0,3949"
   },
   {
     "objectID": "trabalho/index.html#resíduos-studentizados",
     "href": "trabalho/index.html#resíduos-studentizados",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
-    "section": "5.3 Resíduos Studentizados",
-    "text": "5.3 Resíduos Studentizados"
+    "section": "5.4 Resíduos Studentizados",
+    "text": "5.4 Resíduos Studentizados"
   },
   {
     "objectID": "trabalho/index.html#qq-plot",
     "href": "trabalho/index.html#qq-plot",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
-    "section": "5.4 QQ-plot",
-    "text": "5.4 QQ-plot"
+    "section": "5.5 QQ-plot",
+    "text": "5.5 QQ-plot"
   },
   {
     "objectID": "trabalho/index.html#alavanca-influência",
     "href": "trabalho/index.html#alavanca-influência",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
-    "section": "5.5 Alavanca & Influência",
-    "text": "5.5 Alavanca & Influência"
+    "section": "5.6 Alavanca & Influência",
+    "text": "5.6 Alavanca & Influência"
   },
   {
     "objectID": "trabalho/index.html#conclusão-1",
     "href": "trabalho/index.html#conclusão-1",
     "title": "Análise de Regressão sobre Avaliações do IMDb",
     "section": "6.1 Conclusão",
-    "text": "6.1 Conclusão\n\n\n\nO Modelo\n\nR² ajustado: 0.3949;\nHeterocedástico;\nResíduos não-normais;\nMulticolinearidade ausente.\n\n\n\n\n\n\nMelhorias\n\nAdição de outras variável, após uma redução de categorias;\nPossível modelo logístico, com a nota sendo discretizada em faixas."
+    "text": "6.1 Conclusão\n\n\n\nO Modelo\n\nExplica 39,46% da variabilidade;\nHeterocedástico;\nResíduos não-normais;\nMulticolinearidade ausente.\n\n\n\n\n\n\nMelhorias\n\nAdição de outras variáveis, após uma redução de categorias;\nPossível modelo logístico, com a nota sendo discretizada."
   }
 ]
