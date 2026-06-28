@@ -126,6 +126,7 @@ df <- df %>%
 
 ## rating_mpa ----
 unique(df$rating_mpa)
+length(unique(df$rating_mpa))
 
 # Agrupamento por nível de restrição de conteúdo (equivalência entre
 # sistemas MPA e TV Parental Guidelines), olhando os coeficientes:

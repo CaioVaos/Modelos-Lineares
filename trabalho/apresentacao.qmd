@@ -139,7 +139,7 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
 | `link`                 | Link IMDb                    | STRING  |
 | `year`                 | Ano de lançamento            | INT64   |
 | `duration`             | Duração                      | STRING  |
-| `rating_mpa`           | Classificação etária (MPA)   | FLOAT64 |
+| `rating_mpa`           | Classificação etária (MPA)   | STRING  |
 | `rating_imdb`          | Nota IMDb                    | FLOAT64 |
 | `vote`                 | Número de votos              | INT64   |
 | `budget`               | Orçamento (USD)              | FLOAT64 |
@@ -310,6 +310,7 @@ df_modelo <- readRDS("data/df_modelo_imdb.rds")
 | genre              |   8.541    |
 | country_origin     |   2.939    |
 | language           |   2.710    |
+| rating_mpa         |    27      |
 : {.tabela-tema}
 
 :::
@@ -692,6 +693,40 @@ car::vif(modelo)
 
 ::: {.box-gold}
 
+- Maior FIV = 1,421975² = 2,02 < 3
+
+:::
+
+:::
+
+::::
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+```{r}
+#| fig-align: center
+#| echo: true
+e_pond <- residuals(modelo) * sqrt(pesos_nomination)
+h <- lm.influence(modelo)$hat
+press_resid_pond <- e_pond / (1 - h)
+PRESS_pond <- sum(press_resid_pond^2)
+PRESS_pond
+```
+
+:::
+
+::: {.column width="4%"}
+
+:::
+
+::: {.column width="48%"}
+
+::: {.box-gold}
+
 - $PRESS$ = 39.876,13
 
 - $R^{2}_{predito}$ = 0,3940
@@ -844,6 +879,21 @@ ggplot(df_diag, aes(x = h, y = rstud)) +
   geom_vline(xintercept = limite_leverage, linetype = "dashed", color = "#D97706", linewidth = 0.8) +
   geom_line(data = df_curvas, aes(x = h, y = cook_lim_pos), color = "#D97706", linetype = "dashed", linewidth = 0.8, inherit.aes = FALSE) +
   geom_line(data = df_curvas, aes(x = h, y = cook_lim_neg), color = "#D97706", linetype = "dashed", linewidth = 0.8, inherit.aes = FALSE) +
+  # Rótulo da linha vertical (limite de leverage)
+  annotate(
+    "text",
+    x = limite_leverage, y = max(df_diag$rstud) * 1.05,
+    label = paste0("Limite leverage = ", round(limite_leverage, 5)),
+    color = "#D97706", size = 3, hjust = -0.05, vjust = 0
+  ) +
+  # Rótulo da curva de Cook (parte positiva)
+  annotate(
+    "text",
+    x = max(df_curvas$h) * 0.7,
+    y = approx(df_curvas$h, df_curvas$cook_lim_pos, xout = max(df_curvas$h) * 0.7)$y,
+    label = paste0("Distância de Cook = ", round(limite_cook, 5)),
+    color = "#D97706", size = 3, vjust = -0.8
+  ) +
   coord_cartesian(ylim = range(df_diag$rstud) * 1.1) +
   labs(
     x = "Leverage (hii)",
